@@ -32,3 +32,7 @@ Route::get('/blog-post', function () {
 Route::get('/admin', function () {
 
 })->middleware('validate_token');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});

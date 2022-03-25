@@ -17,7 +17,7 @@ class EnsureTokenIsValid
     public function handle(Request $request, Closure $next)
     {
         if($request->input('token') == 'admin') {
-            return redirect('login');
+            return redirect('dashboard');
         }
         return $next($request);
     }

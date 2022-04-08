@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,26 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('blog');
-});
-
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/register', function () {
-    return view('register');
-});
-
-Route::get('/blog-post', function () {
-    return view('blog-post');
-});
-
-Route::get('/admin', function () {
-
-})->middleware('validate_token');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+Route::get('blogs', [BlogController::class, 'index'])->name('blog.index');
+Route::get('blogs/create', [BlogController::class, 'create'])->name('blog.create');
+Route::post('blogs/create', [BlogController::class, 'store'])->name('blog.store');
+Route::delete('blogs/destroy/{blog}', [BlogController::class, 'destroy'])->name('blog.destroy');
+Route::get('blogs/edit/{blog}', [BlogController::class, 'edit'])->name('blog.edit');
+Route::put('blogs/edit/{blog}', [BlogController::class, 'update'])->name('blog.update');
+Route::get('/', [HomeController::class, 'index'])->name('index');
